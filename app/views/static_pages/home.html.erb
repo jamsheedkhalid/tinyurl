@@ -1,2 +1,5 @@
+
 <h1>StaticPages#home</h1>
-<p>Find me in app/views/static_pages/home.html.erb</p>
+<%= render partial: "shared/flash_errors", locals: { object: flash } %>
+<p>Hi <%= @user.email%></p>
+  <%= link_to '<button type="button">Log out</button>'.html_safe, logout_path %>

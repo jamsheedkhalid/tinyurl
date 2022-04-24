@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
   def create
     @user = User.authenticate_by(email: params[:user][:email].downcase, password: params[:user][:password])
     if @user
-      if @user.unconfirmed?
+      if !@user.confirmed?
         redirect_to new_confirmation_path, alert: "Incorrect email or password."
       else
         after_login_path = session[:user_return_to] || root_path
@@ -23,7 +23,7 @@ class SessionsController < ApplicationController
   def destroy
     forget_active_session
     logout
-    redirect_to root_path, notice: "Signed out."
+    redirect_to login_path, notice: "Signed out."
   end
 
   def new

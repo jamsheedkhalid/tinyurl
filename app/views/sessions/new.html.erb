@@ -1,4 +1,5 @@
 <%= form_with url: login_path, scope: :user do |form| %>
+  <%= render partial: "shared/flash_errors", locals: { object: flash } %>
   <div>
     <%= form.label :email %>
     <%= form.email_field :email, required: true %>
@@ -12,4 +13,7 @@
     <%= form.check_box :remember_me %>
   </div>
   <%= form.submit "Sign In" %>
+
+  <br>
+  <%= link_to '<button type="button">Sign Up</button>'.html_safe, sign_up_path %>
 <% end %>

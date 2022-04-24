@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   CONFIRMATION_TOKEN_EXPIRATION = 10.minutes
   PASSWORD_RESET_TOKEN_EXPIRATION = 10.minutes
-  MAILER_FROM_EMAIL = "no-reply@example.com"
+  MAILER_FROM_EMAIL = "tinyurl@indepth.ae"
   attr_accessor :current_password
   has_secure_password
   # has_secure_token :remember_token
@@ -58,7 +58,11 @@ class User < ApplicationRecord
   end
 
   def unconfirmed_or_reconfirming?
-    unconfirmed? || reconfirming?
+    !confirmed? || reconfirming?
+  end
+
+  def unconfirmed?
+    !confirmed?
   end
 
   def send_confirmation_email!
