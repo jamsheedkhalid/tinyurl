@@ -1,5 +1,5 @@
 
 <h1>StaticPages#home</h1>
 <%= render partial: "shared/flash_errors", locals: { object: flash } %>
-<p>Hi <%= @user.email%></p>
+<p>Hi <%= @user.firstname %></p>
   <%= link_to '<button type="button">Log out</button>'.html_safe, logout_path %>

@@ -1,6 +1,6 @@
 class StaticPagesController < ApplicationController
   before_action :authenticate_user!
   def home
-    @user = current_user
+    @user = User.find(current_user.id)
   end
 end
