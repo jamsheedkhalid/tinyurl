@@ -20,9 +20,8 @@ Rails.application.routes.draw do
   end
   post "upload" , to: "uploads#create"
   get  "upload", to: "uploads#new"
+  put "upload", to:"uploads#share"
   get "show_uploads", to: "uploads#show"
-  resources :uploads, only: [  :destroy], param: :id
-
-
+  resources :uploads, only: [ :destroy], param: :id
 
 end

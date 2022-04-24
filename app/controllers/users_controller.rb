@@ -5,7 +5,9 @@ class UsersController < ApplicationController
     @user = User.new(create_user_params)
     if @user.save
       @user.send_confirmation_email!
-      redirect_to root_path, notice: "Please check your email for confirmations instructions."
+        active_session = login @user
+        remember(active_session) if params[:user][:remember_me] == "1"
+        redirect_to root_path, notice: "Please check your email for confirmations instructions."
     else
       render :new, status: :unprocessable_entity
     end

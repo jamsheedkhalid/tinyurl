@@ -20,10 +20,15 @@ class UploadsController < ApplicationController
     @uploads = Upload.where(user_id: current_user.id)
   end
 
+  def share
+    file = Upload.find(params[:id])
+    puts file.id
+  end
+
   def destroy
-    item = Upload.find(params[:id])
-    if item.destroy
-      redirect_to root_path, :notice => "File Deleted Successfully!"
+    file = Upload.find(params[:id])
+    if file.destroy
+      redirect_to show_uploads_url, :notice => "File Deleted Successfully!"
     else
       redirect_to root_path, :notice => "Something went wrong!"
     end
