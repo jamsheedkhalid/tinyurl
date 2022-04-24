@@ -18,4 +18,11 @@ Rails.application.routes.draw do
       delete "destroy_all"
     end
   end
+  post "upload" , to: "uploads#create"
+  get  "upload", to: "uploads#new"
+  get "show_uploads", to: "uploads#show"
+  resources :uploads, only: [  :destroy], param: :id
+
+
+
 end

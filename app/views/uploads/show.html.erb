@@ -1,0 +1,50 @@
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <%= link_to '<button type="button" class="btn btn-small btn-danger">Log out</button>'.html_safe, logout_path %>
+  </div>
+</nav>
+<main id="main">
+  <section class="py-5 text-center container">
+    <div class="row ">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Your Uploaded Files</h1>
+        <% i = 0 %>
+        <% if @uploads.length < 1 %>
+          <h3>No Files Uploaded</h3>
+          <% else %>
+        <table class="table table-sm table-bordered">
+          <thead>
+          <tr>
+            <td>SI</td>
+            <td>Title</td>
+            <td>Description</td>
+            <td>Share</td>
+            <td>Delete</td>
+          </tr>
+          </thead>
+          <tbody>
+          <% @uploads.each do |file| %>
+            <tr>
+              <td><%= i += 1 %></td>
+              <td><%=file.title %></td>
+              <td><%=file.description %></td>
+              <td></td>
+              <td><%= button_to "Remove", {:controller => "uploads", :action => 'destroy', :id => file.id}, :confirm => "Are you sure you want to delete #{file.title}?", :method => :delete %></td>
+            </tr>
+          <% end %>
+          <% end %>
+
+          </tbody>
+        </table>
+
+
+        <a href="<%= upload_url %>" class="btn btn-primary my-2">Upload a File</a>
+        <a href="<%= root_url %>" class="btn btn-secondary my-2">Home</a>
+        </p>
+      </div>
+    </div>
+  </section>
+</main>
