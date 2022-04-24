@@ -4,7 +4,7 @@ class User < ApplicationRecord
   MAILER_FROM_EMAIL = "no-reply@example.com"
   attr_accessor :current_password
   has_secure_password
-  has_secure_token :remember_token
+  # has_secure_token :remember_token
   has_many :active_sessions, dependent: :destroy
   before_save :downcase_email
   before_save :downcase_unconfirmed_email
