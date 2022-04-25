@@ -21,8 +21,10 @@ class UploadsController < ApplicationController
   end
 
   def share
-    file = Upload.find(params[:id])
-    puts file.id
+    @file = Upload.find(params[:id])
+    if @file.user_id != current_user.id
+      redirect_to show_uploads_url, :notice => "File doesnt belongs to you!"
+    end
   end
 
   def destroy

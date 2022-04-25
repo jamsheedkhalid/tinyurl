@@ -7,6 +7,7 @@
   </div>
 </nav>
 <main id="main">
+  <%= render partial: "shared/flash_errors", locals: { object: flash } %>
   <section class="py-5 text-center container">
     <div class="row ">
       <div class="col  mx-auto">
@@ -39,7 +40,7 @@
               <td> <%= (file.file.byte_size.to_i / 1000) < 1024 ? (file.file.byte_size.to_f / 1000).round(2).to_s + " KB"  : (file.file.byte_size.to_f / 1000000).round(2).to_s + " MB"%></td>
               <td><%= link_to 'View', file.file %> </td>
               <td>
-                <%= button_to "Share", {:controller => "uploads", :action => 'share', :id => file.id}, :method => :put, :class=>"btn btn-danger my-2"%>
+                <%= button_to "Share", {:controller => "uploads", :action => 'share', :id => file.id}, :method => :put, :class=>"btn btn-success my-2"%>
                 <%= button_to "Remove", {:controller => "uploads", :action => 'destroy', :id => file.id}, :confirm=>  "Are you sure you want to delete #{file.title}?", :method => :delete, :class=>"btn btn-danger my-2"%></td>
             </tr>
           <% end %>
