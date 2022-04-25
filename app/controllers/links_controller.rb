@@ -12,7 +12,7 @@ class LinksController < ApplicationController
   def send_email
     puts params[:email]
     puts params[:link]
-    UserMailer.send_link(current_user, params[:link],params[:email]).deliver_now
+    UserMailer.send_link(User.find(current_user.id), params[:link],params[:email]).deliver_now
     redirect_to root_path, :notice => "File Sent"
   end
 end
