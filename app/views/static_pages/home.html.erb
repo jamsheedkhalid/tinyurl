@@ -1,5 +1,25 @@
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <%= link_to '<button type="button" class="btn btn-small btn-danger">Log out</button>'.html_safe, logout_path %>
+  </div>
+</nav>
 
-<h1>StaticPages#home</h1>
-<%= render partial: "shared/flash_errors", locals: { object: flash } %>
-<p>Hi <%= @user.email%></p>
-  <%= link_to '<button type="button">Log out</button>'.html_safe, logout_path %>
+<main id="main">
+  <%= render partial: "shared/flash_errors", locals: { object: flash } %>
+
+  <section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Welcome <%=@user.firstname%> <%=@user.lastname %></h1>
+        <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
+        <p>
+          <a href="<%=show_uploads_url %>" class="btn btn-primary my-2">View Uploads</a>
+          <a href="<%=upload_url%>" class="btn btn-secondary my-2">Upload a File</a>
+        </p>
+      </div>
+    </div>
+  </section>
+</main>

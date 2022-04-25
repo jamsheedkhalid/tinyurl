@@ -1,19 +1,45 @@
 <%= form_with url: login_path, scope: :user do |form| %>
   <%= render partial: "shared/flash_errors", locals: { object: flash } %>
-  <div>
-    <%= form.label :email %>
-    <%= form.email_field :email, required: true %>
-  </div>
-  <div>
-    <%= form.label :password %>
-    <%= form.password_field :password, required: true %>
-  </div>
-  <div>
-    <%= form.label :remember_me %>
-    <%= form.check_box :remember_me %>
-  </div>
-  <%= form.submit "Sign In" %>
+<div class="container align-middle">
+  <div class="row">
+    <div class="col-md-5 mx-auto">
+      <div id="first">
+        <div class="myform form ">
+          <div class="logo mb-3">
+            <div class="col-md-12 text-center">
+              <h1>Login</h1>
+            </div>
+          </div>
+            <div class="form-group">
+              <label for="email">Email address</label>
+              <%= form.email_field :email, class: "form-control", required: true, placeholder: "Email" %>
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <%= form.password_field :password, class: "form-control" ,required: true, placeholder: "Password" %>
+            </div>
 
-  <br>
-  <%= link_to '<button type="button">Sign Up</button>'.html_safe, sign_up_path %>
+          <div class="form-check">
+            <%= form.check_box :remember_me, class: "form-check-input" %>
+            <label class="form-check-label" for="user_remember_me">
+              Remember Me
+            </label>
+          </div>
+          </div>
+            <div class="col-md-12 text-center ">
+              <%= form.submit "Sign In" , class: "btn btn-block mybtn btn-primary tx-tfm" %>
+            </div>
+            <div class="col-md-12 ">
+              <div class="login-or">
+                <hr class="hr-or">
+              </div>
+            </div>
+            <div class="form-group">
+              <p class="text-center">Don't have account? <a href="<%=sign_up_url %>" id="signup">Sign up here</a></p>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <% end %>

@@ -1,0 +1,31 @@
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <%= link_to '<button type="button" class="btn btn-small btn-danger">Log out</button>'.html_safe, logout_path %>
+  </div>
+</nav>
+<main id="main">
+  <%= render partial: "shared/flash_errors", locals: { object: flash } %>
+  <section class="py-5 text-center container">
+    <div class="row ">
+      <div class="col  mx-auto">
+        <h1 class="fw-light p-5" >Share <%= @file.title %> </h1>
+        <h3> Link : <a href="<%= Link.shorten(@file.file.url) %>"><%= Link.shorten(@file.file.url) %></a></h3>
+
+        <h4 class="text-success">How Do You Want to Share?</h4>
+        <%= form_with model: @link, url: link_path   do |form| %>
+          <%= form.text_field :link, style: "display:none", value: Link.shorten(@file.file.url, @file.id) %>
+          <%= form.email_field :email, class: "form-control", required: true, placeholder: "Enter email to share your file" %>
+          <%= form.submit "Send Email", class: "btn btn-primary my-2" %>
+        <% end %>
+
+
+        <a href="<%= upload_url %>" class="btn btn-primary my-2">Upload a File</a>
+        <a href="<%= root_url %>" class="btn btn-secondary my-2">Home</a>
+        </p>
+      </div>
+    </div>
+  </section>
+</main>

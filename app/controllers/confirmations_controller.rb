@@ -4,7 +4,7 @@ class ConfirmationsController < ApplicationController
 
     if @user.present? && !@user.confirmed?
       @user.send_confirmation_email!
-      redirect_to root_path, notice: "Check you email for confirmations instructions."
+      redirect_to login_path, notice: "Check you email for confirmations instructions."
     else
       redirect_to new_confirmation_path, alert: "We could not find a user with that email or that email has already confirmed. "
     end

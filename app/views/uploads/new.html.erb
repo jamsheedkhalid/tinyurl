@@ -1,0 +1,46 @@
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <%= link_to '<button type="button" class="btn btn-small btn-danger">Log out</button>'.html_safe, logout_path %>
+  </div>
+</nav>
+<%= form_with model: @upload, url: upload_path, method: :post do |form| %>
+  <main id="main">
+    <section class="py-5 text-center container">
+      <div class="row ">
+        <div class="col-lg-6 col-md-8 mx-auto">
+          <h1 class="fw-light">Upload File</h1>
+          <p class="lead text-muted">Enter Details to upload
+          <p>
+          <div class="col-md-5 mx-auto">
+            <div id="second">
+              <div class="myform form ">
+                <div class="form-group">
+                  <label for="title">Title</label>
+                  <%= form.text_field :title, required: true %>
+                </div>
+                <div class="form-group">
+                  <label for="description">Description</label>
+                  <%= form.text_field :description, required: false %>
+                </div>
+                <div class="form-group">
+                  <%= form.label :file %>
+                  <%= form.file_field :file %>
+                </div>
+                <div class="col-md-12 text-center mb-3">
+                  <%= form.submit "Upload", :class => "btn btn-block mybtn btn-success tx-tfm" %>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <a href="<%=show_uploads_url %>" class="btn btn-primary my-2">View Uploads</a>
+          <a href="<%= root_url %>" class="btn btn-secondary my-2">Home</a>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+<% end %>

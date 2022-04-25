@@ -6,7 +6,10 @@ class User < ApplicationRecord
   has_secure_password
   # has_secure_token :remember_token
   has_many :active_sessions, dependent: :destroy
+  has_many :uploads, dependent: :destroy
   before_save :downcase_email
+  before_save :camelize_firstname
+  before_save :camelize_lastname
   before_save :downcase_unconfirmed_email
   validates :email, format: {with: URI::MailTo::EMAIL_REGEXP}, presence: true, uniqueness: true
   validates :unconfirmed_email, format: {with: URI::MailTo::EMAIL_REGEXP, allow_blank: true}
@@ -83,6 +86,16 @@ class User < ApplicationRecord
 
   def downcase_email
     self.email = email.downcase
+  end
+
+  def camelize_firstname
+    return if firstname.nil?
+    self.firstname = firstname.camelize
+  end
+
+  def camelize_lastname
+    return if lastname.nil?
+    self.lastname = lastname.camelize
   end
 
   def downcase_unconfirmed_email

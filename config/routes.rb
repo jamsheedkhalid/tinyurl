@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  default_url_options :host => "localhost:3000"
   # get 'static_pages/home'
   root "static_pages#home"
   post "sign_up", to: "users#create"
@@ -18,4 +19,11 @@ Rails.application.routes.draw do
       delete "destroy_all"
     end
   end
+  post "upload" , to: "uploads#create"
+  get  "upload", to: "uploads#new"
+  put "upload", to:"uploads#share"
+  get "show_uploads", to: "uploads#show"
+  post "link", to: "links#send_email"
+  resources :uploads, only: [ :destroy], param: :id
+  get '/s/:slug', to: 'links#show', as: :short
 end

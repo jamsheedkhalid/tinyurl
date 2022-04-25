@@ -6,12 +6,12 @@ class SessionsController < ApplicationController
     @user = User.authenticate_by(email: params[:user][:email].downcase, password: params[:user][:password])
     if @user
       if !@user.confirmed?
-        redirect_to new_confirmation_path, alert: "Incorrect email or password."
+        redirect_to new_confirmation_path, alert: "Please confirm you email"
       else
         after_login_path = session[:user_return_to] || root_path
         active_session = login @user
         remember(active_session) if params[:user][:remember_me] == "1"
-        redirect_to after_login_path, notice: "Signed in."
+        redirect_to after_login_path, notice: "Successfully signed in!"
       end
     else
       flash.now[:alert] = "Incorrect email or password."
@@ -23,7 +23,7 @@ class SessionsController < ApplicationController
   def destroy
     forget_active_session
     logout
-    redirect_to login_path, notice: "Signed out."
+    redirect_to login_path, notice: "Successfully logged out. Session cleared!"
   end
 
   def new
