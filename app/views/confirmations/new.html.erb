@@ -1,5 +1,26 @@
-<%= form_with model: @user, url: confirmations_path do |form| %>
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <%= link_to '<button type="button" class="btn btn-small btn-danger">Log out</button>'.html_safe, logout_path %>
+  </div>
+</nav>
+
+<main id="main">
   <%= render partial: "shared/flash_errors", locals: { object: flash } %>
-  <%= form.email_field :email, required: true %>
-  <%= form.submit "Confirm Email" %>
-<% end %>
+
+  <section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Welcome </h1>
+        <p class="lead text-muted">Please confirm you email!</p>
+        <%= form_with model: @user, url: confirmations_path do |form| %>
+          <%= form.email_field :email,class: "form-control", required: true %>
+          <%= form.submit "Confirm Email", class: "btn btn-warning my-2" %>
+        <% end %>
+
+      </div>
+    </div>
+  </section>
+</main>
